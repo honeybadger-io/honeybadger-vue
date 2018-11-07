@@ -1,9 +1,7 @@
-sudo: false
 dist: trusty
 language: node_js
 node_js:
   - "8"
+sudo: false
 addons:
   chrome: stable
-before_install:
-after_success:
