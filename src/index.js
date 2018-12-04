@@ -15,8 +15,8 @@ const HoneybadgerVue = {
       return {
         isRoot: vm.$root === vm,
         name: name,
-        options: vm.$options,
         props: vm.$props,
+        data: vm.$data,
         file: file
       }
     }

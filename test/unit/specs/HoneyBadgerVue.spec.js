@@ -10,9 +10,6 @@ describe('HoneybadgerVue', () => {
 
   var sandbox = sinon.createSandbox()
   beforeEach(function () {
-    // Refresh singleton state.
-    // Honeybadger.reset()
-
     // Stub HTTP requests.
     requests = []
     xhr = sandbox.useFakeXMLHttpRequest()
