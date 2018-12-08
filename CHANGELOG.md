@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Changed
+* Changed the debug output based on Vue debug mode
+
 ## [0.0.1] - 2018-11-06
 * Initial release (unpublished due to missing artifacts)
 
