@@ -4151,9 +4151,9 @@ home-or-tmp@^2.0.0:
     os-tmpdir "^1.0.1"
 
 honeybadger-js@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/honeybadger-js/-/honeybadger-js-1.0.1.tgz#c5d448c9232ce5af90bbe29dbf92816c7393d0aa"
-  integrity sha512-p+jbj7dzyYEqgAspqtc7u3A1bRCk5j7+jopskfYmEH4hlE5PwAhU/iQIKR0ZH1nS+DDr03NhQjuHUFClXiSloA==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/honeybadger-js/-/honeybadger-js-1.0.4.tgz#12f067e5c9308c40d25549807742b1f184321aaa"
+  integrity sha512-bqVVTODgzgOdvC+Pur0HHhTtMMo3FI+h0Y7hNzWAJY/bPFSJQfEy1X8YHcZ1gO8HkSrTvg+lIx5UANHNmfbIhg==
 
 hosted-git-info@^2.1.4:
   version "2.7.1"
