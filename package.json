@@ -83,7 +83,7 @@
     "interactive": "^0.1.9",
     "jest": "^24.9.0",
     "jest-serializer-vue": "^2.0.2",
-    "nightwatch": "^0.9.12",
+    "nightwatch": "^1.3.2",
     "nightwatch-xhr": "^0.4.6",
     "node-notifier": "^6.0.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
