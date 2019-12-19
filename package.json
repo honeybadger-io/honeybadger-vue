@@ -26,21 +26,21 @@
   "homepage": "https://github.com/honeybadger-io/honeybadger-vue#readme",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "yarn dev",
+    "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
-    "test": "yarn unit",
-    "test:all": "yarn unit && yarn e2e",
+    "test": "npm run unit",
+    "test:all": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "yarn build:umd & yarn build:es & yarn build:unpkg",
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
     "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/honeybadger-vue.umd.js",
     "build:es": "rollup --config build/rollup.config.js --format es --file dist/honeybadger-vue.esm.js",
     "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/honeybadger-vue.js",
     "build:unpkg-minify": "rollup MINIFY=true --config build/rollup.config.js --format iife --file dist/honeybadger-vue.min.js",
-    "preversion": "yarn test",
+    "preversion": "npm test",
     "version": "scripts/update-versions.sh",
     "postversion": "git push && git push --tags",
-    "prepublishOnly": "yarn test && yarn build"
+    "prepublishOnly": "npm run build && npm test"
   },
   "dependencies": {
     "honeybadger-js": "^2.0.0"
