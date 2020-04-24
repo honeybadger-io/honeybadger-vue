@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.0.11] - 2020-04-24
 ### Fixed
 - Update honeybadger-js to 2.2.1 (security release, see
-    [here](https://github.com/honeybadger-io/honeybadger-js/blob/master/CHANGELOG.md#fixed-1))
+    [here](https://github.com/honeybadger-io/honeybadger-js/blob/master/CHANGELOG.md#220---2020-03-16))
 
 ## [0.0.10] - 2020-01-08
 ### Fixed
