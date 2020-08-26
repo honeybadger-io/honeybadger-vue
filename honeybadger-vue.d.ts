@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Honeybadger from 'honeybadger-js';
 
 interface HoneybadgerVue {
     notify(...args: any[]): any;

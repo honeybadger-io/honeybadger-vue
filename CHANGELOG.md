@@ -5,8 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Import `Honeybadger` in TypeScript definitions file (fixes potential missing
+  name error).
 
 ## [0.0.12-beta.0] - 2020-08-21
+### Fixed
 - Bump honeybadger-js version
 
 ## [0.0.11] - 2020-04-24
