@@ -1,4 +1,4 @@
-import Honeybadger from 'honeybadger-js'
+import Honeybadger from '@honeybadger-io/js'
 
 const HoneybadgerVue = {
   install (Vue, options) {
