@@ -7,7 +7,7 @@ const HoneybadgerVue = {
     }
     const honeybadger = Honeybadger.configure(options)
     Vue.$honeybadger = honeybadger
-    Vue.prototype.$honeybadger = Vue.$honeybadger
+    Vue.config.globalProperties.$honeybadger = honeybadger
     const chainedErrorHandler = Vue.config.errorHandler
     const extractContext = function (vm) {
       var options = typeof vm === 'function' && vm.cid != null ? vm.options : vm._isVue ? vm.$options ||
