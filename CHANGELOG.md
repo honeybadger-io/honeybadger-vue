@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Fixed
-
 - Add a module export with an `install` function. This fixes builds in newer Vue apps written in TypeScript
 - Add `@vue/runtime-core` for being able to import `App` type for correct type information on the install function
 
