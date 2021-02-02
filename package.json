@@ -55,6 +55,7 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/register": "^7.9.0",
     "@babel/runtime": "^7.9.2",
+    "@vue/runtime-core": "^3.0.5",
     "ajv": "^6.12.2",
     "autoprefixer": "^10.0.0",
     "babel-core": "^7.0.0-bridge.0",
