@@ -3,10 +3,12 @@
 // Project: https://github.com/honeybadger-io/honeybadger-vue
 
 declare module '@honeybadger-io/vue' {
+  // This is required for Vue 3 createApp support
+  import { App } from '@vue/runtime-core'
   import Vue from 'vue'
 
   const HoneybadgerVue: {
-    install(app: typeof Vue, options?: any): void
+    install(app: App | typeof Vue, options?: any): void
   }
 
   export default HoneybadgerVue;
