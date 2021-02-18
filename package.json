@@ -30,8 +30,9 @@
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage --forceExit",
     "e2e": "node test/e2e/runner.js",
+    "tsd": "npx tsd",
     "test": "npm run unit",
-    "test:all": "npm run unit && npm run e2e",
+    "test:all": "npm run tsd && npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
     "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/honeybadger-vue.umd.js",
@@ -142,5 +143,12 @@
     "https-proxy-agent": "^2.2.1",
     "socks-proxy-agent": "^4.0.1"
   },
-  "types": "./honeybadger-vue.d.ts"
+  "types": "./honeybadger-vue.d.ts",
+  "tsd": {
+    "compilerOptions": {
+      "lib": [
+        "DOM"
+      ]
+    }
+  }
 }

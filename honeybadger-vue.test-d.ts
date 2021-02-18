@@ -26,4 +26,4 @@ app.$honeybadger.setContext({
   foo: 'bar'
 }).notify('testing')
 
-app.$honeybadgser.notify('testing')
+app.$honeybadger.notify('testing')
