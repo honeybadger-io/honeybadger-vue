@@ -1,24 +1,21 @@
-// This is required for Vue 3 createApp support
-import { App } from '@vue/runtime-core'
-import _Vue from 'vue'
-import Honeybadger from '@honeybadger-io/js';
 
-interface HoneybadgerVue {
-  notify(...args: any[]): any;
-  setContext<T extends object>(context: T): typeof Honeybadger;
-  resetContext(): typeof Honeybadger;
-}
+// Type definitions for honeybadger.js vue integration
+// Project: https://github.com/honeybadger-io/honeybadger-vue
 
 declare module '@honeybadger-io/vue' {
+  import Vue from 'vue'
+
   const HoneybadgerVue: {
-    install(app: App | typeof _Vue, options?: any): void
+    install(app: typeof Vue, options?: any): void
   }
 
   export default HoneybadgerVue;
 }
 
 declare module 'vue/types/vue' {
+  import Honeybadger from '@honeybadger-io/js';
+
   interface Vue {
-    $honeybadger: HoneybadgerVue;
+    $honeybadger: typeof Honeybadger;
   }
 }
