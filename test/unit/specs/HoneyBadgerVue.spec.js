@@ -46,7 +46,9 @@ describe('HoneybadgerVue', () => {
   function afterNotify (done, run) {
     setTimeout(function () {
       run()
-      done()
+      setTimeout(function () {
+        done()
+      }, 1000)
     }, 50)
   }
 
