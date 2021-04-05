@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "unit": "jest --config test/unit/jest.conf.js --coverage --forceExit",
+    "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
     "tsd": "npx tsd",
     "test": "npm run unit",
@@ -66,6 +66,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-transform-vue-jsx": "^4.0.1",
+    "browser-resolve": "^2.0.0",
     "chalk": "^4.0.0",
     "chromedriver": "^89.0.0",
     "copy-webpack-plugin": "^8.0.0",
