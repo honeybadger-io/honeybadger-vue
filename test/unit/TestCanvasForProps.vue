@@ -8,7 +8,7 @@
 import TestComponentWithProps from './TestComponentWithProps'
 export default {
   name: 'TestCanvasForProps',
-  components: {TestComponentWithProps},
+  components: { TestComponentWithProps },
   data () {
     return {
       name: 'Component 1',

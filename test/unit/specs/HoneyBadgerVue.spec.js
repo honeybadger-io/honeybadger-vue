@@ -2,6 +2,7 @@ import HoneybadgerVue from '@/index.js'
 import Honeybadger from '@honeybadger-io/js'
 import TestComponent from '../TestComponent.vue'
 import TestCanvasForProps from '../TestCanvasForProps.vue'
+import sinon from 'sinon'
 
 describe('HoneybadgerVue', () => {
   let requests, xhr

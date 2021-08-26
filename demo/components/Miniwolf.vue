@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <button id="componentErrantButton" v-on:click="makeSomethingUnrenderable()">Trigger a component Error</button>
     <button id="setValueButton" v-on:click="setSomethingValue(100)">Set a value (no error)</button>
-    <div>{{something | formatSomething}}</div>
+    <div>{{somethingFormatted}}</div>
   </div>
 </template>
 
@@ -29,13 +29,13 @@ export default {
       console.log(this.something)
     }
   },
-  filters: {
-    formatSomething: function (value) {
-      if (value === 'unrenderable') {
+  computed: {
+    somethingFormatted: function () {
+      if (this.something === 'unrenderable') {
         throw new Error('Something is Unrenderable')
       }
-      if (!parseInt(value)) { return '<Empty>' }
-      return `${value}`
+      if (!parseInt(this.something)) { return '<Empty>' }
+      return `${this.something}`
     }
   }
 }
