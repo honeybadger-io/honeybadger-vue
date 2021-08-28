@@ -22,11 +22,11 @@ function extractContext (vm) {
   const options = vm.$options
   const name = options.name || options._componentTag
   const file = options.__file
-  const parentVNodeTag = vm.$options.parent.$vnode.type.name
+  const parentVNodeTag = vm.$options && vm.$options.parent && vm.$options.parent.$vnode && vm.$options.parent.$vnode.type ? vm.$options.parent.$vnode.type.name : undefined
   return {
     isRoot: vm.$root === vm,
     name: name,
-    props: options.propsData,
+    props: vm.$props,
     parentVnodeTag: parentVNodeTag,
     file: file
   }

@@ -1,29 +1,47 @@
 import HoneybadgerVue from '@/index.js'
 import Honeybadger from '@honeybadger-io/js'
-import TestComponent from '../TestComponent.vue'
+import Miniwolf from '../../../demo/components/Miniwolf'
 import TestCanvasForProps from '../TestCanvasForProps.vue'
 import sinon from 'sinon'
+import { createApp } from 'vue'
+import { mount } from '@vue/test-utils'
 
 describe('HoneybadgerVue', () => {
   let requests, xhr
-  let Vue
   let sandbox
 
-  function factory (config = {}) {
-    return Vue.use(HoneybadgerVue, Object.assign({}, {
+  function getConfig () {
+    return {
       apiKey: 'FFAACCCC00',
       enableUncaught: false
-    }, config))
+    }
+  }
+
+  function factory (rootComponent = {}, debug = false) {
+    const app = createApp(rootComponent)
+    if (debug) {
+      app.config.debug = true
+    }
+    return app.use(HoneybadgerVue, getConfig())
+  }
+
+  function factoryMount (rootComponent = {}) {
+    return mount(rootComponent, {
+      global: {
+        plugins: [
+          [HoneybadgerVue, getConfig()]
+        ]
+      }
+    })
   }
 
   beforeEach(function () {
     jest.resetModules()
 
     global.console = {
-      log: jest.fn()
+      log: jest.fn(),
+      warn: jest.fn()
     }
-
-    Vue = require('vue')
 
     sandbox = sinon.createSandbox()
 
@@ -51,30 +69,26 @@ describe('HoneybadgerVue', () => {
     }, 50)
   }
 
-  it('should bind the client when we add the Honeybadger component', () => {
-    const constructor = factory()
-    // const vm = new Constructor().$mount()
-    expect(constructor.$honeybadger).toBe(Honeybadger)
+  it('should bind the Honeybadger component to an app instance', () => {
+    const app = factory()
+    expect(app.$honeybadger).toBe(Honeybadger)
   })
 
   it('Should output debug information', () => {
-    Vue.config.debug = true
-    factory()
+    factory({}, true)
     expect(global.console.log).toHaveBeenCalledWith('Honeybadger configured with FFAACCCC00')
   })
 
   it('Should not output debug information', () => {
-    Vue.config.debug = false
-    factory(Vue)
-
+    factory()
     expect(global.console.log).not.toHaveBeenCalled()
   })
 
   it('should add an errorHandler', () => {
-    const constructor = factory()
+    const app = factory()
 
     // Until we .use the plugin, the Vue errorHandler is of type "object."
-    expect(typeof constructor.config.errorHandler).toEqual('function')
+    expect(typeof app.config.errorHandler).toEqual('function')
   })
 
   // The following two tests are failing because of a quirk of how the Sinon XmlHttpRequest constructor works. Because
@@ -99,37 +113,38 @@ describe('HoneybadgerVue', () => {
   // })
 
   it("should invoke Honeybadger's notify", (done) => {
-    const constructor = factory()
+    const app = factory()
 
-    sandbox.spy(constructor.$honeybadger, 'notify')
+    sandbox.spy(app.$honeybadger, 'notify')
     const err = new Error('oops')
-    constructor.config.errorHandler(err, { $root: true, $options: {} }, 'some descriptive context')
+    app.config.errorHandler(err, { $root: true, $options: {} }, 'some descriptive context')
     afterNotify(done, function () {
-      expect(constructor.$honeybadger.notify.called).toBeTruthy()
+      expect(app.$honeybadger.notify.called).toBeTruthy()
     })
   })
 
   it('Should bubble up a rendering error to errorHandler', (done) => {
-    const constructor = factory()
-    sandbox.spy(constructor.$honeybadger, 'notify')
-    const Tc = constructor.extend(TestComponent)
-    const vm = new Tc().$mount()
-    vm.makeSomethingUnrenderable()
+    const wrapper = factoryMount(Miniwolf)
+    sandbox.spy(wrapper.vm.$honeybadger, 'notify')
+    wrapper.vm.makeSomethingUnrenderable()
+
     afterNotify(done, function () {
-      expect(vm.$honeybadger.notify.called).toBeTruthy()
-      expect(vm.$honeybadger.notify.calledOnce).toBeTruthy()
+      expect(wrapper.vm.$honeybadger.notify.called).toBeTruthy()
+      expect(wrapper.vm.$honeybadger.notify.calledOnce).toBeTruthy()
     })
   })
   describe('when a component has props', () => {
     it('should pass the props in the error notification', (done) => {
-      const constructor = factory()
-      sandbox.spy(constructor.$honeybadger, 'notify')
-      const Tc = constructor.extend(TestCanvasForProps)
-      const vm = new Tc().$mount()
+      const wrapper = factoryMount(TestCanvasForProps)
+      sandbox.spy(wrapper.vm.$honeybadger, 'notify')
+
+      // need to mount component with valid data, so that we can call sandbox.spy
+      // when that is done, we set the invalid data which will trigger the error
+      wrapper.setData({ total: -1 })
 
       afterNotify(done, function () {
-        expect(vm.$honeybadger.notify.called).toBeTruthy()
-        sandbox.assert.calledWith(vm.$honeybadger.notify, sandbox.match.any, sandbox.match(
+        expect(wrapper.vm.$honeybadger.notify.called).toBeTruthy()
+        sandbox.assert.calledWith(wrapper.vm.$honeybadger.notify, sandbox.match.any, sandbox.match(
           { context: { vm: { props: { count: -1, title: 'Component 1' } } } })
         )
       })

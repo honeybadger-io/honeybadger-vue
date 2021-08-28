@@ -1,6 +1,6 @@
 <template>
   <div>
-    <test-component-with-props v-bind:title="name" v-bind:count="total"></test-component-with-props>
+    <test-component-with-props ref="test-comp-with-props" v-bind:title="name" v-bind:count="total"></test-component-with-props>
   </div>
 </template>
 
@@ -12,12 +12,10 @@ export default {
   data () {
     return {
       name: 'Component 1',
-      total: -1
+      total: 10
     }
   },
   methods: {
-  },
-  filters: {
   }
 }
 </script>
