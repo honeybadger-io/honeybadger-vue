@@ -9,6 +9,8 @@ describe('HoneybadgerVue', () => {
   let requests, xhr
   let sandbox
 
+  const DUMMY_API_KEY = 'FFAACCCC00'
+
   function getAppInstance (wrapper) {
     return wrapper.__app
   }
@@ -19,7 +21,7 @@ describe('HoneybadgerVue', () => {
 
   function getHoneybadgerConfig () {
     return {
-      apiKey: 'FFAACCCC00',
+      apiKey: DUMMY_API_KEY,
       enableUncaught: false
     }
   }
@@ -77,7 +79,7 @@ describe('HoneybadgerVue', () => {
 
   it('should output debug information', () => {
     factory({}, { debug: true })
-    expect(global.console.log).toHaveBeenCalledWith('Honeybadger configured with FFAACCCC00')
+    expect(global.console.log).toHaveBeenCalledWith(`Honeybadger configured with ${DUMMY_API_KEY}`)
   })
 
   it('should not output debug information', () => {
