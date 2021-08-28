@@ -3,33 +3,33 @@ import Honeybadger from '@honeybadger-io/js'
 import Miniwolf from '../../../demo/components/Miniwolf'
 import TestCanvasForProps from '../TestCanvasForProps.vue'
 import sinon from 'sinon'
-import { createApp } from 'vue'
 import { mount } from '@vue/test-utils'
 
 describe('HoneybadgerVue', () => {
   let requests, xhr
   let sandbox
 
-  function getConfig () {
+  function getAppInstance (wrapper) {
+    return wrapper.__app
+  }
+
+  function getComponentInstance (wrapper) {
+    return wrapper.vm
+  }
+
+  function getHoneybadgerConfig () {
     return {
       apiKey: 'FFAACCCC00',
       enableUncaught: false
     }
   }
 
-  function factory (rootComponent = {}, debug = false) {
-    const app = createApp(rootComponent)
-    if (debug) {
-      app.config.debug = true
-    }
-    return app.use(HoneybadgerVue, getConfig())
-  }
-
-  function factoryMount (rootComponent = {}) {
+  function factory (rootComponent = {}, appConfig = {}) {
     return mount(rootComponent, {
       global: {
+        config: appConfig,
         plugins: [
-          [HoneybadgerVue, getConfig()]
+          [HoneybadgerVue, getHoneybadgerConfig()]
         ]
       }
     })
@@ -70,23 +70,24 @@ describe('HoneybadgerVue', () => {
   }
 
   it('should bind the Honeybadger component to an app instance', () => {
-    const app = factory()
-    expect(app.$honeybadger).toBe(Honeybadger)
+    const wrapper = factory()
+    const vm = getComponentInstance(wrapper)
+    expect(vm.$honeybadger).toBe(Honeybadger)
   })
 
-  it('Should output debug information', () => {
-    factory({}, true)
+  it('should output debug information', () => {
+    factory({}, { debug: true })
     expect(global.console.log).toHaveBeenCalledWith('Honeybadger configured with FFAACCCC00')
   })
 
-  it('Should not output debug information', () => {
+  it('should not output debug information', () => {
     factory()
     expect(global.console.log).not.toHaveBeenCalled()
   })
 
   it('should add an errorHandler', () => {
-    const app = factory()
-
+    const wrapper = factory()
+    const app = getAppInstance(wrapper)
     // Until we .use the plugin, the Vue errorHandler is of type "object."
     expect(typeof app.config.errorHandler).toEqual('function')
   })
@@ -113,8 +114,8 @@ describe('HoneybadgerVue', () => {
   // })
 
   it("should invoke Honeybadger's notify", (done) => {
-    const app = factory()
-
+    const wrapper = factory()
+    const app = getAppInstance(wrapper)
     sandbox.spy(app.$honeybadger, 'notify')
     const err = new Error('oops')
     app.config.errorHandler(err, { $root: true, $options: {} }, 'some descriptive context')
@@ -123,28 +124,30 @@ describe('HoneybadgerVue', () => {
     })
   })
 
-  it('Should bubble up a rendering error to errorHandler', (done) => {
-    const wrapper = factoryMount(Miniwolf)
-    sandbox.spy(wrapper.vm.$honeybadger, 'notify')
+  it('should bubble up a rendering error to errorHandler', (done) => {
+    const wrapper = factory(Miniwolf)
+    const vm = getComponentInstance(wrapper)
+    sandbox.spy(vm.$honeybadger, 'notify')
     wrapper.vm.makeSomethingUnrenderable()
 
     afterNotify(done, function () {
-      expect(wrapper.vm.$honeybadger.notify.called).toBeTruthy()
-      expect(wrapper.vm.$honeybadger.notify.calledOnce).toBeTruthy()
+      expect(vm.$honeybadger.notify.called).toBeTruthy()
+      expect(vm.$honeybadger.notify.calledOnce).toBeTruthy()
     })
   })
   describe('when a component has props', () => {
     it('should pass the props in the error notification', (done) => {
-      const wrapper = factoryMount(TestCanvasForProps)
-      sandbox.spy(wrapper.vm.$honeybadger, 'notify')
+      const wrapper = factory(TestCanvasForProps)
+      const vm = getComponentInstance(wrapper)
+      sandbox.spy(vm.$honeybadger, 'notify')
 
       // need to mount component with valid data, so that we can call sandbox.spy
       // when that is done, we set the invalid data which will trigger the error
       wrapper.setData({ total: -1 })
 
       afterNotify(done, function () {
-        expect(wrapper.vm.$honeybadger.notify.called).toBeTruthy()
-        sandbox.assert.calledWith(wrapper.vm.$honeybadger.notify, sandbox.match.any, sandbox.match(
+        expect(vm.$honeybadger.notify.called).toBeTruthy()
+        sandbox.assert.calledWith(vm.$honeybadger.notify, sandbox.match.any, sandbox.match(
           { context: { vm: { props: { count: -1, title: 'Component 1' } } } })
         )
       })
