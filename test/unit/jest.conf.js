@@ -25,5 +25,7 @@ module.exports = {
     'src/**/*.{js,vue}',
     '!src/main.js',
     '!**/node_modules/**'
-  ]
+  ],
+  resolver: "<rootDir>/test/unit/resolver.js",
+  testEnvironment: "jsdom"
 }
