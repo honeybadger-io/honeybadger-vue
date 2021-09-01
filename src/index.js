@@ -19,15 +19,15 @@ const HoneybadgerVue = {
 }
 
 function extractContext (vm) {
-  const options = vm.$options
+  const options = vm.$options || {}
   const name = options.name || options._componentTag
   const file = options.__file
-  const parentVNodeTag = vm.$options && vm.$options.parent && vm.$options.parent.$vnode && vm.$options.parent.$vnode.type ? vm.$options.parent.$vnode.type.name : undefined
+  const parentName = vm.$parent && vm.$parent.$options ? vm.$parent.options.name : undefined
   return {
     isRoot: vm.$root === vm,
     name: name,
     props: vm.$props,
-    parentVnodeTag: parentVNodeTag,
+    parentName: parentName,
     file: file
   }
 }
