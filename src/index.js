@@ -22,7 +22,7 @@ function extractContext (vm) {
   const options = vm.$options || {}
   const name = options.name || options._componentTag
   const file = options.__file
-  const parentName = vm.$parent && vm.$parent.$options ? vm.$parent.options.name : undefined
+  const parentName = vm.$parent && vm.$parent.$options ? vm.$parent.$options.name : undefined
   return {
     isRoot: vm.$root === vm,
     name: name,
