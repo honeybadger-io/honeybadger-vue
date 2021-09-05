@@ -93,7 +93,7 @@ To perform a release:
    documentation. This command will publish the version with the `latest` tag. To publish with a different tag, i.e. `next`, use `npm publish --tag next`.
 
 
-3. Verify the published version [here](https://www.npmjs.com/package/@honeybadger-io/vue).
+3. Verify the published version in Versions tab from [here](https://www.npmjs.com/package/@honeybadger-io/vue).
 
 ### License
 
