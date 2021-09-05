@@ -86,10 +86,14 @@ To perform a release:
 
 1. With a clean working tree, use `npm version [new version]` to bump the version, commit the
    changes, tag the release, and push to GitHub. See `npm help version` for
-   documentation.
+   documentation. Make sure to checkout the correct branch (i.e. if you are planning to release a version with other than `latest` dist tag).
+
 
 2. To publish the release, use `npm publish`. See `npm help publish` for
-   documentation.
+   documentation. This command will publish the version with the `latest` tag. To publish with a different tag, i.e. `next`, use `npm publish --tag next`.
+
+
+3. Verify the published version [here](https://www.npmjs.com/package/@honeybadger-io/vue).
 
 ### License
 
