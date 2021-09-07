@@ -1,7 +1,7 @@
 <template>
-  <div class="miniwolf" v-on:customEvent="blowup()">
+  <div class="miniwolf">
     <h1>{{ title }}</h1>
-    <div>{{ count | assertInRange }}</div>
+    <div>{{ assertInRange }}</div>
   </div>
 </template>
 
@@ -12,10 +12,12 @@ export default {
     title: String,
     count: Number
   },
-  filters: {
-    assertInRange: function (value) {
-      if (value < 0) { throw Error('out of range') }
-      return value
+  computed: {
+    assertInRange: function () {
+      if (this.count < 0) {
+        throw Error('out of range')
+      }
+      return this.count
     }
   }
 }
