@@ -8,7 +8,7 @@ const baseWebpackConfig = require("./webpack.base.conf");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 const env =
@@ -53,13 +53,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     minimize: true,
     minimizer: [
       new TerserPlugin(),
-      // Compress extracted CSS. We are using this plugin so that possible
-      // duplicated CSS from different components can be deduped.
-      new OptimizeCSSPlugin({
-        cssProcessorOptions: config.build.productionSourceMap
-          ? { safe: true, map: { inline: false } }
-          : { safe: true }
-      })
+      new CssMinimizerPlugin(),
     ]
   },
   plugins: [
