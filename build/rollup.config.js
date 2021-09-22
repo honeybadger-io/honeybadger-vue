@@ -10,13 +10,16 @@ export default {
   output: {
     name: 'HoneybadgerVue',
     exports: 'named',
-    globals: {'honeybadger-js': 'Honeybadger'},
+    globals: {'@honeybadger-io/js': 'Honeybadger'},
     sourcemap: true,
     sourcemapPathTransform: relativePath => {
       // will transform e.g. "src/main.js" -> "main.js"
       return path.relative('src', relativePath)
     },
   },
+  external: [
+    '@honeybadger-io/js'
+  ],
   plugins: [
     vue(),
     buble(), // Transpile to ES5
