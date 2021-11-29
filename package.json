@@ -67,7 +67,7 @@
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-transform-vue-jsx": "^4.0.1",
     "browser-resolve": "^2.0.0",
-    "chalk": "^4.1.2",
+    "chalk": "^5.0.0",
     "chromedriver": "^96.0.0",
     "copy-webpack-plugin": "^10.0.0",
     "cross-spawn": "^7.0.2",
