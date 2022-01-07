@@ -68,7 +68,7 @@
     "babel-plugin-transform-vue-jsx": "^4.0.1",
     "browser-resolve": "^2.0.0",
     "chalk": "^5.0.0",
-    "chromedriver": "^96.0.0",
+    "chromedriver": "^97.0.0",
     "copy-webpack-plugin": "^10.2.0",
     "cross-spawn": "^7.0.2",
     "css-loader": "^6.5.1",
