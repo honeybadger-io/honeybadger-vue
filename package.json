@@ -90,7 +90,7 @@
     "jest": "^27.4.7",
     "jest-serializer-vue": "^2.0.2",
     "mini-css-extract-plugin": "^2.5.3",
-    "nightwatch": "^1.7.13",
+    "nightwatch": "^2.0.2",
     "nightwatch-xhr": "^0.4.7",
     "node-notifier": "^10.0.0",
     "ora": "^5.4.1",
