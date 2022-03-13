@@ -1,4 +1,5 @@
 import Honeybadger from '@honeybadger-io/js'
+import { generateComponentTrace } from './vue-debug'
 
 const HoneybadgerVue = {
   install (app, options) {
@@ -13,6 +14,10 @@ const HoneybadgerVue = {
       honeybadger.notify(error, { context: { vm: extractContext(vm), info: info } })
       if (typeof chainedErrorHandler === 'function') {
         chainedErrorHandler.call(app, error, vm, info)
+      }
+
+      if (shouldLogError(app)) {
+        logError(app, error, vm, info)
       }
     }
   }
@@ -29,6 +34,27 @@ function extractContext (vm) {
     props: vm.$props,
     parentName: parentName,
     file: file
+  }
+}
+
+function shouldLogError (app) {
+  if (app.config.warnHandler) {
+    return true
+  }
+
+  const hasConsole = typeof console !== 'undefined'
+  const isDebug = app.config.debug || process.env.NODE_ENV !== 'production'
+  return hasConsole && isDebug
+}
+
+function logError (app, error, vm, info) {
+  const message = `Error in ${info}: "${error && error.toString()}"`
+
+  const trace = vm ? generateComponentTrace(vm) : ''
+  if (app.config.warnHandler) {
+    app.config.warnHandler.call(null, message, vm, trace)
+  } else {
+    console.error(`[Vue warn]: ${message}${trace}`)
   }
 }
 
