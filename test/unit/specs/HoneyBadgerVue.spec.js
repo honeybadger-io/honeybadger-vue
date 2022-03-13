@@ -16,10 +16,13 @@ describe('HoneybadgerVue', () => {
   }
 
   beforeEach(function () {
+    process.env.NODE_ENV = 'test'
+
     jest.resetModules()
 
     global.console = {
-      log: jest.fn()
+      log: jest.fn(),
+      error: jest.fn()
     }
 
     Vue = require('vue')
@@ -97,7 +100,9 @@ describe('HoneybadgerVue', () => {
   //   })
   // })
 
-  it("should invoke Honeybadger's notify", (done) => {
+  it("should invoke Honeybadger's notify without logging error in console", (done) => {
+    process.env.NODE_ENV = 'production'
+    Vue.config.debug = false
     const constructor = factory()
 
     sandbox.spy(constructor.$honeybadger, 'notify')
@@ -105,6 +110,20 @@ describe('HoneybadgerVue', () => {
     constructor.config.errorHandler(err, { $root: true, $options: {} }, 'some descriptive context')
     afterNotify(done, function () {
       expect(constructor.$honeybadger.notify.called).toBeTruthy()
+      expect(global.console.error).not.toHaveBeenCalled()
+    })
+  })
+
+  it("should invoke Honeybadger's notify and log error in console", (done) => {
+    Vue.config.debug = true
+    const constructor = factory()
+
+    sandbox.spy(constructor.$honeybadger, 'notify')
+    const err = new Error('oops')
+    constructor.config.errorHandler(err, { $root: true, $options: {} }, 'some descriptive context')
+    afterNotify(done, function () {
+      expect(constructor.$honeybadger.notify.called).toBeTruthy()
+      expect(global.console.error).toHaveBeenCalledTimes(1);
     })
   })
 
