@@ -25,7 +25,7 @@ const formatComponentName = (vm, includeFile) => {
   }
 
   return (
-    (name ? `<${classify(name)}>` : `<Anonymous>`) +
+    (name ? `<${classify(name)}>` : '<Anonymous>') +
     (file && includeFile !== false ? ` at ${file}` : '')
   )
 }
