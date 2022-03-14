@@ -1,5 +1,5 @@
 import Honeybadger from '@honeybadger-io/js'
-import { generateComponentTrace } from './vue-debug'
+import { logError } from './error-logging'
 
 const HoneybadgerVue = {
   install (app, options) {
@@ -10,14 +10,14 @@ const HoneybadgerVue = {
     app.$honeybadger = honeybadger
     app.config.globalProperties.$honeybadger = honeybadger
     const chainedErrorHandler = app.config.errorHandler
-    app.config.errorHandler = (error, vm, info) => {
-      honeybadger.notify(error, { context: { vm: extractContext(vm), info: info } })
+    app.config.errorHandler = (error, instance, info) => {
+      honeybadger.notify(error, { context: { vm: extractContext(instance), info: info } })
       if (typeof chainedErrorHandler === 'function') {
-        chainedErrorHandler.call(app, error, vm, info)
+        chainedErrorHandler.call(app, error, instance, info)
       }
 
       if (shouldLogError(app)) {
-        logError(app, error, vm, info)
+        logError(error, info, true)
       }
     }
   }
@@ -45,17 +45,6 @@ function shouldLogError (app) {
   const hasConsole = typeof console !== 'undefined'
   const isDebug = app.config.debug || process.env.NODE_ENV !== 'production'
   return hasConsole && isDebug
-}
-
-function logError (app, error, vm, info) {
-  const message = `Error in ${info}: "${error && error.toString()}"`
-
-  const trace = vm ? generateComponentTrace(vm) : ''
-  if (app.config.warnHandler) {
-    app.config.warnHandler.call(null, message, vm, trace)
-  } else {
-    console.error(`[Vue warn]: ${message}${trace}`)
-  }
 }
 
 export default HoneybadgerVue

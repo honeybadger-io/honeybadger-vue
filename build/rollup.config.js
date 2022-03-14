@@ -10,7 +10,10 @@ export default {
   output: {
     name: 'HoneybadgerVue',
     exports: 'named',
-    globals: {'@honeybadger-io/js': 'Honeybadger'},
+    globals: {
+      '@honeybadger-io/js': 'Honeybadger',
+      'vue': 'vue'
+    },
     sourcemap: true,
     sourcemapPathTransform: relativePath => {
       // will transform e.g. "src/main.js" -> "main.js"
@@ -18,7 +21,8 @@ export default {
     },
   },
   external: [
-    '@honeybadger-io/js'
+    '@honeybadger-io/js',
+    'vue'
   ],
   plugins: [
     vue(),
