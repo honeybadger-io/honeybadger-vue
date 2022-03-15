@@ -1,5 +1,6 @@
 import Honeybadger from '@honeybadger-io/js'
-import { logError } from './error-logging'
+import { handleError } from 'vue'
+import { ErrorTypesMap } from './vue-error-types'
 
 const HoneybadgerVue = {
   install (app, options) {
@@ -10,16 +11,17 @@ const HoneybadgerVue = {
     app.$honeybadger = honeybadger
     app.config.globalProperties.$honeybadger = honeybadger
     const chainedErrorHandler = app.config.errorHandler
-    app.config.errorHandler = (error, instance, info) => {
+    const hbErrorHandler = (error, instance, info) => {
       honeybadger.notify(error, { context: { vm: extractContext(instance), info: info } })
       if (typeof chainedErrorHandler === 'function') {
         chainedErrorHandler.call(app, error, instance, info)
       }
 
-      if (shouldLogError(app)) {
-        logError(error, info, true)
-      }
+      app.config.errorHandler = undefined
+      handleError(error, instance.appContext ? instance : instance._, ErrorTypesMap[info] || info, false)
+      app.config.errorHandler = hbErrorHandler
     }
+    app.config.errorHandler = hbErrorHandler
   }
 }
 
@@ -35,16 +37,6 @@ function extractContext (vm) {
     parentName: parentName,
     file: file
   }
-}
-
-function shouldLogError (app) {
-  if (app.config.warnHandler) {
-    return true
-  }
-
-  const hasConsole = typeof console !== 'undefined'
-  const isDebug = app.config.debug || process.env.NODE_ENV !== 'production'
-  return hasConsole && isDebug
 }
 
 export default HoneybadgerVue
