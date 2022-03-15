@@ -119,7 +119,6 @@ describe('HoneybadgerVue', () => {
   // })
 
   it("should invoke Honeybadger's notify without logging error in console", (done) => {
-    process.env.NODE_ENV = 'production'
     const wrapper = factory({}, { debug: false })
     const app = getAppInstance(wrapper)
     sandbox.spy(app.$honeybadger, 'notify')
@@ -132,7 +131,7 @@ describe('HoneybadgerVue', () => {
   })
 
   it("should invoke Honeybadger's notify and log error in console", (done) => {
-    const wrapper = factory({}, { config: true })
+    const wrapper = factory({}, { debug: true })
     const app = getAppInstance(wrapper)
     sandbox.spy(app.$honeybadger, 'notify')
     const err = new Error('oops')

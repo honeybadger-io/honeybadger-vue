@@ -1,3 +1,4 @@
+// As declared in https://github.com/vuejs/core/blob/main/packages/runtime-core/src/errorHandling.ts
 const ErrorCodes = {
   SETUP_FUNCTION: 0,
   RENDER_FUNCTION: 1,
@@ -16,6 +17,7 @@ const ErrorCodes = {
   SCHEDULER: 14
 }
 
+// As declared in https://github.com/vuejs/core/blob/main/packages/runtime-core/src/component.ts
 const LifecycleHooks = {
   BEFORE_CREATE: 'bc',
   CREATED: 'c',
@@ -33,6 +35,7 @@ const LifecycleHooks = {
   SERVER_PREFETCH: 'sp'
 }
 
+// Mapped from ErrorTypeStrings in https://github.com/vuejs/core/blob/main/packages/runtime-core/src/errorHandling.ts
 export const ErrorTypesMap = {
   'serverPrefetch hook': LifecycleHooks.SERVER_PREFETCH,
   'beforeCreate hook': LifecycleHooks.BEFORE_CREATE,

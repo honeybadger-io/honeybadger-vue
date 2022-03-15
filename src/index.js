@@ -17,9 +17,11 @@ const HoneybadgerVue = {
         chainedErrorHandler.call(app, error, instance, info)
       }
 
-      app.config.errorHandler = undefined
-      handleError(error, instance.appContext ? instance : instance._, ErrorTypesMap[info] || info, false)
-      app.config.errorHandler = hbErrorHandler
+      if (app.config.debug) {
+        app.config.errorHandler = undefined
+        handleError(error, instance.appContext ? instance : instance._, ErrorTypesMap[info] || info, false)
+        app.config.errorHandler = hbErrorHandler
+      }
     }
     app.config.errorHandler = hbErrorHandler
   }
