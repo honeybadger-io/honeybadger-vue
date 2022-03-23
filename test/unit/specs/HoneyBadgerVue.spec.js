@@ -38,11 +38,14 @@ describe('HoneybadgerVue', () => {
   }
 
   beforeEach(function () {
+    process.env.NODE_ENV = 'test'
+
     jest.resetModules()
 
     global.console = {
       log: jest.fn(),
-      warn: jest.fn()
+      warn: jest.fn(),
+      error: jest.fn()
     }
 
     sandbox = sinon.createSandbox()
@@ -115,14 +118,28 @@ describe('HoneybadgerVue', () => {
   //   })
   // })
 
-  it("should invoke Honeybadger's notify", (done) => {
-    const wrapper = factory()
+  it("should invoke Honeybadger's notify without logging error in console", (done) => {
+    process.env.NODE_ENV = 'production'
+    const wrapper = factory({}, { debug: false })
     const app = getAppInstance(wrapper)
     sandbox.spy(app.$honeybadger, 'notify')
     const err = new Error('oops')
     app.config.errorHandler(err, { $root: true, $options: {} }, 'some descriptive context')
     afterNotify(done, function () {
       expect(app.$honeybadger.notify.called).toBeTruthy()
+      expect(global.console.error).not.toHaveBeenCalled()
+    })
+  })
+
+  it("should invoke Honeybadger's notify and log error in console", (done) => {
+    const wrapper = factory({}, { debug: true })
+    const app = getAppInstance(wrapper)
+    sandbox.spy(app.$honeybadger, 'notify')
+    const err = new Error('oops')
+    app.config.errorHandler(err, { $root: true, $options: {} }, 'some descriptive context')
+    afterNotify(done, function () {
+      expect(app.$honeybadger.notify.called).toBeTruthy()
+      expect(global.console.error).toHaveBeenCalled()
     })
   })
 

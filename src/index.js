@@ -1,4 +1,5 @@
 import Honeybadger from '@honeybadger-io/js'
+import { logError } from './error-logging'
 
 const HoneybadgerVue = {
   install (app, options) {
@@ -14,8 +15,22 @@ const HoneybadgerVue = {
       if (typeof chainedErrorHandler === 'function') {
         chainedErrorHandler.call(app, error, vm, info)
       }
+
+      if (shouldLogError(app)) {
+        logError(app, error, vm, info)
+      }
     }
   }
+}
+
+function shouldLogError (app) {
+  if (app.config.warnHandler) {
+    return true
+  }
+
+  const hasConsole = typeof console !== 'undefined'
+  const isDebug = app.config.debug || process.env.NODE_ENV !== 'production'
+  return hasConsole && isDebug
 }
 
 function extractContext (vm) {
