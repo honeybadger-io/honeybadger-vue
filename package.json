@@ -45,7 +45,7 @@
     "prepublishOnly": "npm run build && npm test"
   },
   "dependencies": {
-    "@honeybadger-io/js": "^3.2.3"
+    "@honeybadger-io/js": "^3.2.8"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
