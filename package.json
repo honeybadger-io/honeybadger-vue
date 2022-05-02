@@ -94,7 +94,7 @@
     "nightwatch": "^2.1.4",
     "nightwatch-xhr": "^0.4.7",
     "node-notifier": "^10.0.1",
-    "ora": "^5.4.1",
+    "ora": "^6.1.0",
     "portfinder": "^1.0.13",
     "postcss": "^8.3.6",
     "postcss-import": "^14.0.2",
