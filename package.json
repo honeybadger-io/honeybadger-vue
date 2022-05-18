@@ -69,7 +69,7 @@
     "browser-resolve": "^2.0.0",
     "chalk": "^5.0.0",
     "chromedriver": "^101.0.0",
-    "copy-webpack-plugin": "^10.2.3",
+    "copy-webpack-plugin": "^11.0.0",
     "cross-spawn": "^7.0.2",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
