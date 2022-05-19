@@ -11,19 +11,11 @@
     "type": "git",
     "url": "git+ssh://git@github.com/honeybadger-io/honeybadger-vue.git"
   },
-  "keywords": [
-    "vue",
-    "vuejs",
-    "honeybadger"
-  ],
+  "keywords": ["vue", "vuejs", "honeybadger"],
   "main": "dist/honeybadger-vue.umd.js",
   "module": "dist/honeybadger-vue.umd.js",
   "unpkg": "dist/honeybadger-vue.min.js",
-  "files": [
-    "dist",
-    "src",
-    "honeybadger-vue.d.ts"
-  ],
+  "files": ["dist", "src", "honeybadger-vue.d.ts"],
   "homepage": "https://github.com/honeybadger-io/honeybadger-vue#readme",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -42,7 +34,9 @@
     "preversion": "npm test",
     "version": "scripts/update-versions.sh",
     "postversion": "git push && git push --tags",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run build && npm test",
+    "prepare": "husky install",
+    "release": "shipjs prepare"
   },
   "dependencies": {
     "@honeybadger-io/js": "^4.0.1"
@@ -56,6 +50,8 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.16.9",
     "@babel/runtime": "^7.16.7",
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@vue/runtime-core": "^3.2.29",
     "ajv": "^8.9.0",
     "autoprefixer": "^10.4.2",
@@ -86,6 +82,7 @@
     "file-loader": "^6.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.0",
     "interactive": "^0.1.9",
     "jest": "^28.0.3",
     "jest-environment-jsdom": "^28.0.2",
@@ -108,6 +105,7 @@
     "selenium-server": "^3.0.1",
     "semver": "^7.3.2",
     "shelljs": "^0.8.5",
+    "shipjs": "0.24.4",
     "sinon": "^14.0.0",
     "terser-webpack-plugin": "^5.3.0",
     "tsd": "^0.20.0",
@@ -128,11 +126,7 @@
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "directories": {
     "test": "test"
   },
@@ -147,9 +141,7 @@
   "types": "./honeybadger-vue.d.ts",
   "tsd": {
     "compilerOptions": {
-      "lib": [
-        "DOM"
-      ]
+      "lib": ["DOM"]
     }
   }
 }
