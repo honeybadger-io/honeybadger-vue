@@ -56,7 +56,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.17.7",
     "@babel/runtime": "^7.17.9",
-    "@vue/compiler-sfc": "^3.1.0",
+    "@vue/compiler-sfc": "^3.2.35",
     "@vue/runtime-core": "^3.2.6",
     "@vue/test-utils": "^2.0.0-rc.21",
     "ajv": "^8.6.1",
