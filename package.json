@@ -11,19 +11,11 @@
     "type": "git",
     "url": "git+ssh://git@github.com/honeybadger-io/honeybadger-vue.git"
   },
-  "keywords": [
-    "vue",
-    "vuejs",
-    "honeybadger"
-  ],
+  "keywords": ["vue", "vuejs", "honeybadger"],
   "main": "dist/honeybadger-vue.umd.js",
   "module": "dist/honeybadger-vue.umd.js",
   "unpkg": "dist/honeybadger-vue.min.js",
-  "files": [
-    "dist",
-    "src",
-    "honeybadger-vue.d.ts"
-  ],
+  "files": ["dist", "src", "honeybadger-vue.d.ts"],
   "homepage": "https://github.com/honeybadger-io/honeybadger-vue#readme",
   "scripts": {
     "dev": "webpack serve --progress --config build/webpack.dev.conf.js",
@@ -42,10 +34,12 @@
     "preversion": "npm test",
     "version": "scripts/update-versions.sh",
     "postversion": "git push && git push --tags",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run build && npm test",
+    "prepare": "husky install",
+    "release": "shipjs prepare"
   },
   "dependencies": {
-    "@honeybadger-io/js": "^3.2.9"
+    "@honeybadger-io/js": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
@@ -56,6 +50,8 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.17.7",
     "@babel/runtime": "^7.17.9",
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@vue/compiler-sfc": "^3.2.35",
     "@vue/runtime-core": "^3.2.6",
     "@vue/test-utils": "^2.0.0-rc.21",
@@ -87,6 +83,7 @@
     "eslint-plugin-vue": "^7.16.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.0",
     "interactive": "^0.1.9",
     "jest": "^26.0.0",
     "jest-serializer-vue": "^2.0.2",
@@ -109,6 +106,7 @@
     "selenium-server": "^3.0.1",
     "semver": "^7.3.7",
     "shelljs": "^0.8.5",
+    "shipjs": "0.24.4",
     "sinon": "^11.1.1",
     "terser-webpack-plugin": "^5.3.1",
     "tsd": "^0.17.0",
@@ -128,11 +126,7 @@
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "directories": {
     "test": "test"
   },
@@ -147,9 +141,7 @@
   "types": "./honeybadger-vue.d.ts",
   "tsd": {
     "compilerOptions": {
-      "lib": [
-        "DOM"
-      ]
+      "lib": ["DOM"]
     }
   }
 }
