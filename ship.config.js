@@ -7,5 +7,5 @@ module.exports = {
     return true;
   },
   publishCommand: ({ defaultCommand, tag }) =>
-    `${defaultCommand} --access public --tag ${tag}`,
+    `${defaultCommand} --access public --tag next`,
 };
