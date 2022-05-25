@@ -1,3 +1,23 @@
+# [1.1.0](https://github.com/honeybadger-io/honeybadger-vue/compare/v1.0.4...v1.1.0) (2022-05-25)
+
+
+### Bug Fixes
+
+* docs vue2.x link ([#944](https://github.com/honeybadger-io/honeybadger-vue/issues/944)) ([7eaf1c8](https://github.com/honeybadger-io/honeybadger-vue/commit/7eaf1c8439324078a761bebba673fdc5620b0fd1))
+* skip release if there are no changes ([#965](https://github.com/honeybadger-io/honeybadger-vue/issues/965)) ([2cf4615](https://github.com/honeybadger-io/honeybadger-vue/commit/2cf461539928d0255461d36760bc0166689d2392))
+
+
+### Features
+
+* shipjs integration ([#954](https://github.com/honeybadger-io/honeybadger-vue/issues/954)) ([b9bb9a3](https://github.com/honeybadger-io/honeybadger-vue/commit/b9bb9a38cac7572c1700460fe4c0019777b12dac))
+
+
+### Reverts
+
+* Revert "chore: release v1.1.0 (#964)" ([8e9e5a3](https://github.com/honeybadger-io/honeybadger-vue/commit/8e9e5a3e9f14126372e5740c317be412b86d867e)), closes [#964](https://github.com/honeybadger-io/honeybadger-vue/issues/964)
+
+
+
 ## [1.0.4] - 2022-03-24
 ### Added
 - Log error to console in development (#865)
