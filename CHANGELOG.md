@@ -12,11 +12,6 @@
 * shipjs integration ([#954](https://github.com/honeybadger-io/honeybadger-vue/issues/954)) ([b9bb9a3](https://github.com/honeybadger-io/honeybadger-vue/commit/b9bb9a38cac7572c1700460fe4c0019777b12dac))
 
 
-### Reverts
-
-* Revert "chore: release v1.1.0 (#964)" ([8e9e5a3](https://github.com/honeybadger-io/honeybadger-vue/commit/8e9e5a3e9f14126372e5740c317be412b86d867e)), closes [#964](https://github.com/honeybadger-io/honeybadger-vue/issues/964)
-
-
 
 ## [1.0.4] - 2022-03-24
 ### Added
