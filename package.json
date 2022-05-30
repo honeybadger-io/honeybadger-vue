@@ -53,7 +53,7 @@
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
     "@vue/compiler-sfc": "^3.2.35",
-    "@vue/runtime-core": "^3.2.6",
+    "@vue/runtime-core": "^3.2.36",
     "@vue/test-utils": "^2.0.0-rc.21",
     "ajv": "^8.6.1",
     "autoprefixer": "^10.4.7",
