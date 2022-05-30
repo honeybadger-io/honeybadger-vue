@@ -1,6 +1,6 @@
 {
   "name": "@honeybadger-io/vue",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "license": "MIT",
   "description": "Honeybadger Vue.js client",
   "author": "Jason Truesdell <jason@yuzuten.com> (https://github.com/JasonTrue)",
@@ -11,11 +11,19 @@
     "type": "git",
     "url": "git+ssh://git@github.com/honeybadger-io/honeybadger-vue.git"
   },
-  "keywords": ["vue", "vuejs", "honeybadger"],
+  "keywords": [
+    "vue",
+    "vuejs",
+    "honeybadger"
+  ],
   "main": "dist/honeybadger-vue.umd.js",
   "module": "dist/honeybadger-vue.umd.js",
   "unpkg": "dist/honeybadger-vue.min.js",
-  "files": ["dist", "src", "honeybadger-vue.d.ts"],
+  "files": [
+    "dist",
+    "src",
+    "honeybadger-vue.d.ts"
+  ],
   "homepage": "https://github.com/honeybadger-io/honeybadger-vue#readme",
   "scripts": {
     "dev": "webpack serve --progress --config build/webpack.dev.conf.js",
@@ -126,7 +134,11 @@
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "directories": {
     "test": "test"
   },
@@ -141,7 +153,9 @@
   "types": "./honeybadger-vue.d.ts",
   "tsd": {
     "compilerOptions": {
-      "lib": ["DOM"]
+      "lib": [
+        "DOM"
+      ]
     }
   }
 }
