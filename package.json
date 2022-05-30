@@ -93,7 +93,7 @@
     "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.0",
     "interactive": "^0.1.9",
-    "jest": "^26.0.0",
+    "jest": "^28.1.0",
     "jest-serializer-vue": "^2.0.2",
     "mini-css-extract-plugin": "^2.0.0",
     "nightwatch": "^2.1.4",
