@@ -1,7 +1,7 @@
 // TypeScript definitions test file
 // See https://github.com/SamVerschueren/tsd#usage
 
-import Vue from 'vue'
+import { createApp } from 'vue'
 import HoneybadgerVue from '.'
 
 const config = {
@@ -10,17 +10,8 @@ const config = {
   revision: 'git SHA/project version'
 }
 
-Vue.use(HoneybadgerVue, config)
-
-const createApp = () => {
-  const app = new Vue({
-    // render: h => h(App)
-  }).$mount('#app')
-
-  return app
-}
-
-const app = createApp()
+const app = createApp({})
+app.use(HoneybadgerVue, config)
 
 app.$honeybadger.setContext({
   foo: 'bar'

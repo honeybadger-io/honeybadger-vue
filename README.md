@@ -9,7 +9,7 @@
 
 For comprehensive documentation and support, [check out our documentation site](https://docs.honeybadger.io/lib/javascript/index.html).
 
-The documentation includes a detailed [Vue integration guide](https://docs.honeybadger.io/lib/javascript/integration/vue2.html)
+The documentation includes a detailed [Vue integration guide](https://docs.honeybadger.io/lib/javascript/integration/vue3.html)
 
 ## Project Goals
 
@@ -87,10 +87,14 @@ To perform a release:
 
 1. With a clean working tree, use `npm version [new version]` to bump the version, commit the
    changes, tag the release, and push to GitHub. See `npm help version` for
-   documentation.
+   documentation. Make sure to checkout the correct branch (i.e. if you are planning to release a version with other than `latest` dist tag).
+
 
 2. To publish the release, use `npm publish`. See `npm help publish` for
-   documentation.
+   documentation. This command will publish the version with the `latest` tag. To publish with a different tag, i.e. `next`, use `npm publish --tag next`.
+
+
+3. Verify the published version in Versions tab from [here](https://www.npmjs.com/package/@honeybadger-io/vue).
 
 ### Release Automation
 

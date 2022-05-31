@@ -21,10 +21,7 @@ export default {
     '@honeybadger-io/js'
   ],
   plugins: [
-    vue({
-      css: true, // Dynamically inject css as a <style> tag
-      compileTemplate: true, // Explicitly convert template to render function
-    }),
+    vue(),
     buble(), // Transpile to ES5
     conditional(isTerse, terser())
   ],
