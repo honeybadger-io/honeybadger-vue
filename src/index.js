@@ -1,35 +1,13 @@
 import Honeybadger from '@honeybadger-io/js'
 import { logError } from './error-logging'
 
-const HoneybadgerVue = {
-  install (app, options) {
-    if (app.config.debug) {
-      console.log(`Honeybadger configured with ${options.apiKey}`)
-    }
-    const honeybadger = Honeybadger.configure(options)
-    app.$honeybadger = honeybadger
-    app.config.globalProperties.$honeybadger = honeybadger
-    const chainedErrorHandler = app.config.errorHandler
-    app.config.errorHandler = (error, vm, info) => {
-      honeybadger.notify(error, { context: { vm: extractContext(vm), info: info } })
-      if (typeof chainedErrorHandler === 'function') {
-        chainedErrorHandler.call(app, error, vm, info)
-      }
-
-      if (shouldLogError(app)) {
-        logError(app, error, vm, info)
-      }
-    }
-  }
-}
-
-function shouldLogError (app) {
+function shouldLogError (app, options) {
   if (app.config.warnHandler) {
     return true
   }
 
   const hasConsole = typeof console !== 'undefined'
-  const isDebug = app.config.debug || process.env.NODE_ENV !== 'production'
+  const isDebug = options.debug || process.env.NODE_ENV !== 'production'
   return hasConsole && isDebug
 }
 
@@ -38,13 +16,53 @@ function extractContext (vm) {
   const name = options.name || options._componentTag
   const file = options.__file
   const parentName = vm.$parent && vm.$parent.$options ? vm.$parent.$options.name : undefined
+
+  // Vue2 - $options.propsData
+  // Vue3 - $props
+  const props = options.propsData || vm.$props;
+
   return {
     isRoot: vm.$root === vm,
     name: name,
-    props: vm.$props,
+    props,
     parentName: parentName,
     file: file
   }
 }
 
-export default HoneybadgerVue
+function init(options) {
+  const vue = options.vue
+  if (!vue) {
+    console.error('HoneybadgerVue component cannot be initialized. Vue app missing from options.')
+    return
+  }
+
+  if (options.debug) {
+    console.log(`Honeybadger configured with ${options.apiKey}`)
+  }
+  const honeybadger = Honeybadger.configure(options)
+  vue.$honeybadger = honeybadger
+
+  // vue 2 support -> make available for all components
+  vue.prototype.$honeybadger = honeybadger
+
+  if (vue.config && vue.config.globalProperties) {
+    // vue 3 support -> make available for all components
+    vue.config.globalProperties.$honeybadger = honeybadger
+  }
+  const chainedErrorHandler = vue.config.errorHandler
+  vue.config.errorHandler = (error, vm, info) => {
+    honeybadger.notify(error, { context: { vm: extractContext(vm), info: info } })
+    if (typeof chainedErrorHandler === 'function') {
+      chainedErrorHandler.call(vue, error, vm, info)
+    }
+
+    if (shouldLogError(vue, options)) {
+      logError(vue, error, vm, info)
+    }
+  }
+}
+
+module.exports = {
+  init
+}
