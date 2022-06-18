@@ -6,7 +6,7 @@ const HoneybadgerVue = {
     if (Vue.config.debug) {
       console.log(`Honeybadger configured with ${options.apiKey}`)
     }
-    const honeybadger = Honeybadger.configure(options)
+    const honeybadger =Honeybadger.configure(options)
     Vue.$honeybadger = honeybadger
     Vue.prototype.$honeybadger = Vue.$honeybadger
     const chainedErrorHandler = Vue.config.errorHandler

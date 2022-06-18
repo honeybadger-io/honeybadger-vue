@@ -1,7 +1,6 @@
 const path = require('path')
 
 module.exports = {
-  testURL: 'http://localhost',
   rootDir: path.resolve(__dirname, '../../'),
   moduleFileExtensions: [
     'js',
@@ -27,5 +26,8 @@ module.exports = {
     '!**/node_modules/**'
   ],
   resolver: "<rootDir>/test/unit/resolver.js",
-  testEnvironment: "jsdom"
+  testEnvironment: "jsdom",
+  testEnvironmentOptions: {
+    url: 'http://localhost',
+  }
 }
