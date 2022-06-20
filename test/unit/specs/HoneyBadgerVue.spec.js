@@ -2,6 +2,7 @@ import HoneybadgerVue from '@/index.js'
 import Honeybadger from '@honeybadger-io/js'
 import TestComponent from '../TestComponent.vue'
 import TestCanvasForProps from '../TestCanvasForProps.vue'
+import sinon from 'sinon'
 
 describe('HoneybadgerVue', () => {
   let requests, xhr
@@ -123,7 +124,7 @@ describe('HoneybadgerVue', () => {
     constructor.config.errorHandler(err, { $root: true, $options: {} }, 'some descriptive context')
     afterNotify(done, function () {
       expect(constructor.$honeybadger.notify.called).toBeTruthy()
-      expect(global.console.error).toHaveBeenCalledTimes(1);
+      expect(global.console.error).toHaveBeenCalledTimes(1)
     })
   })
 

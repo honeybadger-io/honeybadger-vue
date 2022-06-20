@@ -11,12 +11,12 @@
 import TestComponentWithProps from './TestComponentWithProps'
 export default {
   name: 'TestCanvasForProps',
-  components: {TestComponentWithProps},
+  components: { TestComponentWithProps },
   filters: {
   },
   data () {
     return {
-      name:'Component 1',
+      name: 'Component 1',
       total: -1
     }
   },
