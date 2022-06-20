@@ -1,6 +1,9 @@
 <template>
   <div>
-    <test-component-with-props v-bind:title="name" v-bind:count="total"></test-component-with-props>
+    <test-component-with-props
+      :title="name"
+      :count="total"
+    />
   </div>
 </template>
 
@@ -8,7 +11,9 @@
 import TestComponentWithProps from './TestComponentWithProps'
 export default {
   name: 'TestCanvasForProps',
-  components: {TestComponentWithProps},
+  components: { TestComponentWithProps },
+  filters: {
+  },
   data () {
     return {
       name: 'Component 1',
@@ -17,8 +22,6 @@ export default {
   },
   methods: {
   },
-  filters: {
-  }
 }
 </script>
 <style scoped>

@@ -1,5 +1,8 @@
 <template>
-  <div class="miniwolf" v-on:customEvent="blowup()">
+  <div
+    class="miniwolf"
+    @customEvent="blowup()"
+  >
     <h1>{{ title }}</h1>
     <div>{{ count | assertInRange }}</div>
   </div>
@@ -8,14 +11,20 @@
 <script>
 export default {
   name: 'TestComponentWithProps',
-  props: {
-    title: String,
-    count: Number
-  },
   filters: {
     assertInRange: function (value) {
       if (value < 0) { throw Error('out of range') }
       return value
+    }
+  },
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    count: {
+      type: Number,
+      required: true
     }
   }
 }

@@ -33,6 +33,7 @@ const HoneybadgerVue = {
       }
 
       const hasConsole = typeof console !== 'undefined'
+      // eslint-disable-next-line no-undef
       const isDebug = Vue.config.debug || process.env.NODE_ENV !== 'production'
       return hasConsole && isDebug
     }
