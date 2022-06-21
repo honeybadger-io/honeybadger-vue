@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/honeybadger-io/honeybadger-vue/compare/v1.1.0...v1.1.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* remove unused files and deps, simplify eslint config ([#979](https://github.com/honeybadger-io/honeybadger-vue/issues/979)) ([0902a78](https://github.com/honeybadger-io/honeybadger-vue/commit/0902a7880ee1658716f0d8a2d56ef6af1b355120))
+
+
+
 # [1.1.0](https://github.com/honeybadger-io/honeybadger-vue/compare/v1.0.4...v1.1.0) (2022-05-25)
 
 
