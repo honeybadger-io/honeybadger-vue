@@ -52,6 +52,7 @@
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@honeybadger-io/js": "^4.0.3",
+    "@vue/compiler-sfc": "^3.2.37",
     "@vue/test-utils": "^2.0.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
