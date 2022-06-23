@@ -19,7 +19,7 @@ function extractContext (vm) {
 
   // Vue2 - $options.propsData
   // Vue3 - $props
-  const props = options.propsData || vm.$props;
+  const props = options.propsData || vm.$props
 
   return {
     isRoot: vm.$root === vm,
@@ -30,13 +30,7 @@ function extractContext (vm) {
   }
 }
 
-function init(options) {
-  const vue = options.vue
-  if (!vue) {
-    console.error('HoneybadgerVue component cannot be initialized. Vue app missing from options.')
-    return
-  }
-
+function init(vue, options) {
   if (options.debug) {
     console.log(`Honeybadger configured with ${options.apiKey}`)
   }
@@ -44,7 +38,9 @@ function init(options) {
   vue.$honeybadger = honeybadger
 
   // vue 2 support -> make available for all components
-  vue.prototype.$honeybadger = honeybadger
+  if (vue.prototype) {
+    vue.prototype.$honeybadger = honeybadger
+  }
 
   if (vue.config && vue.config.globalProperties) {
     // vue 3 support -> make available for all components

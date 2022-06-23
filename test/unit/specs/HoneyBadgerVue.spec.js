@@ -1,6 +1,6 @@
-import HoneybadgerVue from '@/index.js'
+import HoneybadgerVue from '../../../src/index'
 import Honeybadger from '@honeybadger-io/js'
-import Miniwolf from '../../../demo/components/Miniwolf'
+import Miniwolf from '../../../demo/components/Miniwolf.vue'
 import TestCanvasForProps from '../TestCanvasForProps.vue'
 import sinon from 'sinon'
 import { mount } from '@vue/test-utils'
@@ -19,19 +19,21 @@ describe('HoneybadgerVue', () => {
     return wrapper.vm
   }
 
-  function getHoneybadgerConfig () {
+  function getHoneybadgerConfig (appConfig = {}) {
     return {
       apiKey: DUMMY_API_KEY,
-      enableUncaught: false
+      enableUncaught: false,
+      ...appConfig,
     }
   }
 
   function factory (rootComponent = {}, appConfig = {}) {
     return mount(rootComponent, {
       global: {
-        config: appConfig,
         plugins: [
-          [HoneybadgerVue, getHoneybadgerConfig()]
+          [
+            { install: (app) => HoneybadgerVue.init(app, getHoneybadgerConfig(appConfig)) }
+          ]
         ]
       }
     })

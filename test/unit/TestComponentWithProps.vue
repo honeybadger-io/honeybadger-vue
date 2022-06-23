@@ -9,8 +9,14 @@
 export default {
   name: 'TestComponentWithProps',
   props: {
-    title: String,
-    count: Number
+    title: {
+      type: String,
+      default: ''
+    },
+    count: {
+      type: Number,
+      default: -1
+    }
   },
   computed: {
     assertInRange: function () {
