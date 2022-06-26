@@ -48,7 +48,8 @@ function init(vue, options) {
   }
   const chainedErrorHandler = vue.config.errorHandler
   vue.config.errorHandler = (error, vm, info) => {
-    honeybadger.notify(error, { context: { vm: extractContext(vm), info: info } })
+    const metadata = { context: { vm: extractContext(vm), info: info } }
+    honeybadger.notify(error, metadata)
     if (typeof chainedErrorHandler === 'function') {
       chainedErrorHandler.call(vue, error, vm, info)
     }
@@ -59,6 +60,6 @@ function init(vue, options) {
   }
 }
 
-module.exports = {
+export default {
   init
 }

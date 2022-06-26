@@ -1,6 +1,6 @@
 import HoneybadgerVue from '../../../src/index'
 import Honeybadger from '@honeybadger-io/js'
-import Miniwolf from '../../../demo/components/Miniwolf.vue'
+import Miniwolf from '../Miniwolf.vue'
 import TestCanvasForProps from '../TestCanvasForProps.vue'
 import sinon from 'sinon'
 import { mount } from '@vue/test-utils'
