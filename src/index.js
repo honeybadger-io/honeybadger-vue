@@ -7,7 +7,8 @@ function shouldLogError (app, options) {
   }
 
   const hasConsole = typeof console !== 'undefined'
-  const isDebug = options.debug || process.env.NODE_ENV !== 'production'
+  const hasProcess = typeof process !== 'undefined'
+  const isDebug = options.debug || (hasProcess && process.env.NODE_ENV !== 'production')
   return hasConsole && isDebug
 }
 
