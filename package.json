@@ -66,6 +66,7 @@
     "rollup-plugin-vue": "^6.0.0",
     "shipjs": "^0.24.4",
     "sinon": "^14.0.0",
+    "vue": "^3.2.37",
     "vue-jest": "^5.0.0-alpha.10"
   },
   "peerDependencies": {

@@ -2,7 +2,8 @@
 // Project: https://github.com/honeybadger-io/honeybadger-vue
 
 import { App } from 'vue';
-import * as Honeybadger from '@honeybadger-io/js'
+import Honeybadger from '@honeybadger-io/js/dist/browser/honeybadger'
+import { BrowserConfig } from '@honeybadger-io/js/dist/browser/types/core/types'
 
 declare module '@vue/runtime-core' {
   interface App {
@@ -11,7 +12,7 @@ declare module '@vue/runtime-core' {
 }
 
 declare var HoneybadgerVue: {
-  install(app: App, options?: any): void
+  init(app: App, options?: Partial<BrowserConfig>): void
 }
 
 export default HoneybadgerVue
