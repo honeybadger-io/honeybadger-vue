@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/%40honeybadger-io%2Fvue.svg)](https://badge.fury.io/js/%40honeybadger-io%2Fvue)
 > [Vue.js integration for Honeybadger.io](https://www.honeybadger.io/for/javascript/?utm_source=github&utm_medium=readme&utm_campaign=vue&utm_content=Vue.js+integration+for+Honeybadger.io)
 
-**Note:** The latest release of this project supports Vue.js v2.x. See the [vue3](https://github.com/honeybadger-io/honeybadger-vue/tree/vue3) branch for v3.x support.
+**Note:** Since v4.x release of this project, both Vue.js v2.x and v3.x are supported!
 
 ## Documentation and Support
 
