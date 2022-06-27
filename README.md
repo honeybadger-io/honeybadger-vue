@@ -69,9 +69,6 @@ npm run build --report
 # run unit tests
 npm run unit
 
-# run e2e tests
-HONEYBADGER_API_KEY=yourkey npm run e2e
-
 # run all tests
 HONEYBADGER_API_KEY=yourkey npm run test:all
 ```
