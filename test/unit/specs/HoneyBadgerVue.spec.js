@@ -31,9 +31,7 @@ describe('HoneybadgerVue', () => {
     return mount(rootComponent, {
       global: {
         plugins: [
-          [
-            { install: (app) => HoneybadgerVue.init(app, getHoneybadgerConfig(appConfig)) }
-          ]
+          [HoneybadgerVue, getHoneybadgerConfig(appConfig)]
         ]
       }
     })
