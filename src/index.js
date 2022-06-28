@@ -31,7 +31,7 @@ function extractContext (vm) {
   }
 }
 
-function init(vue, options) {
+function install(vue, options) {
   if (options.debug) {
     console.log(`Honeybadger configured with ${options.apiKey}`)
   }
@@ -62,5 +62,5 @@ function init(vue, options) {
 }
 
 export default {
-  init
+  install
 }
