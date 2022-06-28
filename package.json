@@ -106,7 +106,7 @@
     "shipjs": "0.24.4",
     "sinon": "^14.0.0",
     "terser-webpack-plugin": "^5.3.0",
-    "tsd": "^0.20.0",
+    "tsd": "^0.21.0",
     "url-loader": "^4.1.0",
     "vue": "^2.6.14",
     "vue-jest": "^3.0.5",
