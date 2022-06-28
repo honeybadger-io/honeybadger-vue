@@ -31,7 +31,7 @@
     "tsd": "npx tsd",
     "test": "npm run unit",
     "test:all": "npm run tsd && npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src examples config test/unit",
+    "lint": "eslint --ext .js,.vue src examples test/unit",
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg & npm run build:unpkg-minify",
     "build:umd": "rollup --config rollup.config.js --format umd --file dist/honeybadger-vue.umd.js",
     "build:es": "rollup --config rollup.config.js --format es --file dist/honeybadger-vue.esm.js",
