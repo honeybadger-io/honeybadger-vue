@@ -9,7 +9,7 @@
 
 For comprehensive documentation and support, [check out our documentation site](https://docs.honeybadger.io/lib/javascript/index.html).
 
-The documentation includes a detailed [Vue integration guide](https://docs.honeybadger.io/lib/javascript/integration/vue.html)
+The documentation includes detailed Vue Integration Guides, both for Vue.js [v2.x](https://docs.honeybadger.io/lib/javascript/integration/vue2.html) and [v3.x](https://docs.honeybadger.io/lib/javascript/integration/vue3.html) [Vue integration guide]()
 
 ## Project Goals
 
