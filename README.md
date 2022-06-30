@@ -1,5 +1,5 @@
 # Honeybadger Vue.js Integration
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhoneybadger-io%2Fhoneybadger-vue%2Fbadge&style=flat)](https://actions-badge.atrox.dev/honeybadger-io/honeybadger-vue/goto)
+[![Build Status](https://github.com/honeybadger-io/honeybadger-vue/actions/workflows/nodejs.yml/badge.svg)](https://github.com/honeybadger-io/honeybadger-vue/actions/workflows/nodejs.yml)
 [![npm version](https://badge.fury.io/js/%40honeybadger-io%2Fvue.svg)](https://badge.fury.io/js/%40honeybadger-io%2Fvue)
 > [Vue.js integration for Honeybadger.io](https://www.honeybadger.io/for/javascript/?utm_source=github&utm_medium=readme&utm_campaign=vue&utm_content=Vue.js+integration+for+Honeybadger.io)
 
@@ -9,7 +9,7 @@
 
 For comprehensive documentation and support, [check out our documentation site](https://docs.honeybadger.io/lib/javascript/index.html).
 
-The documentation includes detailed Vue Integration Guides, both for Vue.js [v2.x](https://docs.honeybadger.io/lib/javascript/integration/vue2.html) and [v3.x](https://docs.honeybadger.io/lib/javascript/integration/vue3.html) [Vue integration guide]()
+The documentation includes detailed Vue Integration Guides, both for Vue.js [v2.x](https://docs.honeybadger.io/lib/javascript/integration/vue2.html) and [v3.x](https://docs.honeybadger.io/lib/javascript/integration/vue3.html).
 
 ## Project Goals
 
