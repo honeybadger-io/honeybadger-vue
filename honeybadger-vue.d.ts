@@ -1,17 +1,18 @@
 // Type definitions for honeybadger.js vue integration
 // Project: https://github.com/honeybadger-io/honeybadger-vue
 
-import Vue from 'vue'
-import * as Honeybadger from '@honeybadger-io/js'
+import { App } from 'vue';
+import Honeybadger from '@honeybadger-io/js/dist/browser/honeybadger'
+import { BrowserConfig } from '@honeybadger-io/js/dist/browser/types/core/types'
 
-declare module 'vue/types/vue' {
-  interface Vue {
+declare module '@vue/runtime-core' {
+  interface App {
     $honeybadger: typeof Honeybadger
   }
 }
 
-declare const HoneybadgerVue: {
-  install(app: typeof Vue, options?: any): void
+declare var HoneybadgerVue: {
+  init(app: App, options?: Partial<BrowserConfig>): void
 }
 
 export default HoneybadgerVue

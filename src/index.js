@@ -1,54 +1,66 @@
 import Honeybadger from '@honeybadger-io/js'
 import { logError } from './error-logging'
 
-const HoneybadgerVue = {
-  install (Vue, options) {
-    if (Vue.config.debug) {
-      console.log(`Honeybadger configured with ${options.apiKey}`)
-    }
-    const honeybadger = Honeybadger.configure(options)
-    Vue.$honeybadger = honeybadger
-    Vue.prototype.$honeybadger = Vue.$honeybadger
-    const chainedErrorHandler = Vue.config.errorHandler
-    const extractContext = function (vm) {
-      const options = typeof vm === 'function' && vm.cid != null
-        ? vm.options
-        : vm._isVue
-          ? vm.$options ||
-        vm.constructor.options
-          : vm || {}
-      const name = options.name || options._componentTag
-      const file = options.__file
-      return {
-        isRoot: vm.$root === vm,
-        name: name,
-        props: options.propsData,
-        parentVnodeTag: options._parentVnode ? options._parentVnode.tag : undefined,
-        file: file
-      }
-    }
-    const shouldLogError = () => {
-      if (Vue.config.warnHandler) {
-        return true
-      }
+function shouldLogError (app, options) {
+  if (app.config.warnHandler) {
+    return true
+  }
 
-      const hasConsole = typeof console !== 'undefined'
-      // eslint-disable-next-line no-undef
-      const isDebug = Vue.config.debug || process.env.NODE_ENV !== 'production'
-      return hasConsole && isDebug
+  const hasConsole = typeof console !== 'undefined'
+  const hasProcess = typeof process !== 'undefined'
+  const isDebug = options.debug || (hasProcess && process.env.NODE_ENV !== 'production')
+  return hasConsole && isDebug
+}
+
+function extractContext (vm) {
+  const options = vm.$options || {}
+  const name = options.name || options._componentTag
+  const file = options.__file
+  const parentName = vm.$parent && vm.$parent.$options ? vm.$parent.$options.name : undefined
+
+  // Vue2 - $options.propsData
+  // Vue3 - $props
+  const props = options.propsData || vm.$props
+
+  return {
+    isRoot: vm.$root === vm,
+    name: name,
+    props,
+    parentName: parentName,
+    file: file
+  }
+}
+
+function install(vue, options) {
+  if (options.debug) {
+    console.log(`Honeybadger configured with ${options.apiKey}`)
+  }
+  const honeybadger = Honeybadger.configure(options)
+  vue.$honeybadger = honeybadger
+
+  // vue 2 support -> make available for all components
+  if (vue.prototype) {
+    vue.prototype.$honeybadger = honeybadger
+  }
+
+  if (vue.config && vue.config.globalProperties) {
+    // vue 3 support -> make available for all components
+    vue.config.globalProperties.$honeybadger = honeybadger
+  }
+  const chainedErrorHandler = vue.config.errorHandler
+  vue.config.errorHandler = (error, vm, info) => {
+    const metadata = { context: { vm: extractContext(vm), info: info } }
+    honeybadger.notify(error, metadata)
+    if (typeof chainedErrorHandler === 'function') {
+      chainedErrorHandler.call(vue, error, vm, info)
     }
 
-    Vue.config.errorHandler = (error, vm, info) => {
-      honeybadger.notify(error, { context: { vm: extractContext(vm), info: info } })
-      if (typeof chainedErrorHandler === 'function') {
-        chainedErrorHandler.call(this.Vue, error, vm, info)
-      }
-
-      if (shouldLogError()) {
-        logError(Vue, error, vm, info)
-      }
+    if (shouldLogError(vue, options)) {
+      logError(vue, error, vm, info)
     }
   }
 }
 
-export default HoneybadgerVue
+export default {
+  install
+}

@@ -1,3 +1,17 @@
+# [3.1.0](https://github.com/honeybadger-io/honeybadger-vue/compare/v3.0.1...v3.1.0) (2022-05-30)
+
+
+### Bug Fixes
+
+* docs vue3.x link ([#945](https://github.com/honeybadger-io/honeybadger-vue/issues/945)) ([34182c5](https://github.com/honeybadger-io/honeybadger-vue/commit/34182c51eb51bd32cfc0f786eee538c06e703639))
+
+
+### Features
+
+* shipjs integration ([#954](https://github.com/honeybadger-io/honeybadger-vue/issues/954)) ([b699f1b](https://github.com/honeybadger-io/honeybadger-vue/commit/b699f1b1fc1269c1901f12d7105d9893b268d980)), closes [#949](https://github.com/honeybadger-io/honeybadger-vue/issues/949)
+
+
+
 # [1.1.0](https://github.com/honeybadger-io/honeybadger-vue/compare/v1.0.4...v1.1.0) (2022-05-25)
 
 
@@ -13,9 +27,17 @@
 
 
 
+## [3.0.1] - 2022-03-24
+### Added
+- Log error to console in development (#865)
+
 ## [1.0.4] - 2022-03-24
 ### Added
 - Log error to console in development (#865)
+
+## [3.0.0] - 2021-09-13
+### Changed
+- Vue 3 Support
 
 ## [1.0.3] - 2021-02-18
 ### Fixed

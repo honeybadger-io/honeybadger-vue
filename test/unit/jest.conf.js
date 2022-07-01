@@ -7,9 +7,6 @@ module.exports = {
     'json',
     'vue'
   ],
-  moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
-  },
   transform: {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
     '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest'
@@ -17,8 +14,7 @@ module.exports = {
   testPathIgnorePatterns: [
     '<rootDir>/test/e2e'
   ],
-  snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
-  setupFiles: ['<rootDir>/test/unit/setup'],
+  setupFiles: [],
   coverageDirectory: '<rootDir>/test/unit/coverage',
   collectCoverageFrom: [
     'src/**/*.{js,vue}',
@@ -28,6 +24,6 @@ module.exports = {
   resolver: '<rootDir>/test/unit/resolver.js',
   testEnvironment: 'jsdom',
   testEnvironmentOptions: {
-    url: 'http://localhost',
+    url: 'http://localhost'
   }
 }
