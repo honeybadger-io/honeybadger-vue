@@ -1,3 +1,41 @@
+# [3.2.0](https://github.com/honeybadger-io/honeybadger-vue/compare/v1.1.0...v3.2.0) (2022-07-05)
+
+
+### Bug Fixes
+
+* remove unused files and deps, simplify eslint config ([#979](https://github.com/honeybadger-io/honeybadger-vue/issues/979)) ([0902a78](https://github.com/honeybadger-io/honeybadger-vue/commit/0902a7880ee1658716f0d8a2d56ef6af1b355120))
+
+
+### Features
+
+* v2 and v3 in same release ([#974](https://github.com/honeybadger-io/honeybadger-vue/issues/974)) ([b7e6122](https://github.com/honeybadger-io/honeybadger-vue/commit/b7e6122615cd227353dfaae30fade493ab31b68a)), closes [#900](https://github.com/honeybadger-io/honeybadger-vue/issues/900)
+
+
+
+# [1.1.0](https://github.com/honeybadger-io/honeybadger-vue/compare/v1.0.4...v1.1.0) (2022-05-25)
+
+
+### Bug Fixes
+
+* docs vue2.x link ([#944](https://github.com/honeybadger-io/honeybadger-vue/issues/944)) ([7eaf1c8](https://github.com/honeybadger-io/honeybadger-vue/commit/7eaf1c8439324078a761bebba673fdc5620b0fd1))
+* skip release if there are no changes ([#965](https://github.com/honeybadger-io/honeybadger-vue/issues/965)) ([2cf4615](https://github.com/honeybadger-io/honeybadger-vue/commit/2cf461539928d0255461d36760bc0166689d2392))
+
+
+### Features
+
+* shipjs integration ([#954](https://github.com/honeybadger-io/honeybadger-vue/issues/954)) ([b9bb9a3](https://github.com/honeybadger-io/honeybadger-vue/commit/b9bb9a38cac7572c1700460fe4c0019777b12dac))
+
+
+### Reverts
+
+* Revert "chore: release v1.1.0 (#964)" ([8e9e5a3](https://github.com/honeybadger-io/honeybadger-vue/commit/8e9e5a3e9f14126372e5740c317be412b86d867e)), closes [#964](https://github.com/honeybadger-io/honeybadger-vue/issues/964)
+
+
+
+## [1.0.4](https://github.com/honeybadger-io/honeybadger-vue/compare/v1.0.3...v1.0.4) (2022-03-24)
+
+
+
 # [3.1.0](https://github.com/honeybadger-io/honeybadger-vue/compare/v3.0.1...v3.1.0) (2022-05-30)
 
 
