@@ -1,3 +1,12 @@
+## [3.2.1](https://github.com/honeybadger-io/honeybadger-vue/compare/v3.2.0...v3.2.1) (2022-07-13)
+
+
+### Bug Fixes
+
+* revert type definition to use install as init method does not exist on Vue.Plugin definition ([#991](https://github.com/honeybadger-io/honeybadger-vue/issues/991)) ([78e3fd9](https://github.com/honeybadger-io/honeybadger-vue/commit/78e3fd9b297dd01e17edb176154c04bf58114316))
+
+
+
 # [3.2.0](https://github.com/honeybadger-io/honeybadger-vue/compare/v1.1.0...v3.2.0) (2022-07-05)
 
 
