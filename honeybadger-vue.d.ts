@@ -12,7 +12,7 @@ declare module '@vue/runtime-core' {
 }
 
 declare var HoneybadgerVue: {
-  init(app: App, options?: Partial<BrowserConfig>): void
+  install(app: App, options?: Partial<BrowserConfig>): void
 }
 
 export default HoneybadgerVue

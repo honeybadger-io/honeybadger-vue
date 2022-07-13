@@ -11,7 +11,7 @@ const config = {
 }
 
 const app = createApp({})
-HoneybadgerVue.init(app, config)
+HoneybadgerVue.install(app, config)
 
 app.$honeybadger.setContext({
   foo: 'bar'
